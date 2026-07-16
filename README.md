@@ -185,8 +185,7 @@ for i in range(4):
 
 plt.tight_layout(rect=[0, 0, 1, 0.88])
 
-# ========== 修改后的彩色标题 ==========
-# 主标题 "roles" 保持黑色
+
 plt.suptitle('roles', fontsize=20, y=0.98)
 
 # 使用与散点图完全一致的 brg 颜色映射，为每个职业名称单独上色
@@ -201,11 +200,11 @@ for idx, name in enumerate(role_names):
     # 在职业之间画黑色的分隔符 "|"
     if idx < len(role_names) - 1:
         fig1.text(start_x + idx * step_x + 0.055, 0.92, '|', color='black', fontsize=12, ha='center')
-# =====================================
+
 
 plt.savefig('英雄联盟数据2.png', bbox_inches='tight', pad_inches=0.0)
 
-# 重新读取数据（因为上面的roles已经被映射成数字了）
+# 重新读取数据
 roles1 = pd.read_csv("英雄联盟数据2.csv")
 
 # 切分训练集和测试集（80%训练，20%测试）
@@ -272,7 +271,7 @@ lol = pd.read_csv("英雄联盟数据1.csv")
 # 去掉类别列roles，只保留数值特征用于聚类
 data = lol.drop(labels='roles', axis=1)
 
-# 使用MinMaxScaler将数据缩放到0~1之间，消除量纲影响
+# 使用MinMaxScaler将数据缩放到0~1之间
 min_max_scaler = preprocessing.MinMaxScaler()
 data = min_max_scaler.fit_transform(data)
 
@@ -284,8 +283,7 @@ for i in range(2, 15):
     kmeans_model = KMeans(n_clusters=i)
     predict_y = kmeans_model.fit_predict(data)
 
-    distortions.append(kmeans_model.inertia_)           # 记录SSE
-    sil_score.append(silhouette_score(data, predict_y))  # 记录轮廓系数
+  
 
 print('簇内误差平方和：', distortions)
 print('轮廓系数：', sil_score)

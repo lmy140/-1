@@ -54,14 +54,14 @@ for item in dic:
     wa.append([heroId, name, alias, title, str(roles), isworkfree, attack, defense, magic, difficulty])
 
 # 保存到当前目录
-wb.save('初始数据.xlsx')
+wb.save('初始数据)
 
 # 检查初始数据是否保存成功
 file_path = '初始数据.xlsx'
 print("文件是否存在:", os.path.exists(file_path))
 
 # 读取刚才保存的Excel，进行数据清理
-df = pd.read_excel('初始数据.xlsx')
+df = pd.read_excel('初始数据)
 
 # 删除不需要的列
 df = df.drop(columns=['isWeekFree'])
